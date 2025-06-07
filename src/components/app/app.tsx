@@ -1,4 +1,7 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useDispatch } from '../../services/store';
+import { fetchIngredients } from '../../services/slices/ingredientsSlice';
 import {
   ConstructorPage,
   Feed,
@@ -14,23 +17,31 @@ import { AppHeader } from '@components';
 import '../../index.css';
 import styles from './app.module.css';
 
-const App = () => (
-  <div className={styles.app}>
-    <BrowserRouter>
-      <AppHeader />
-      <Routes>
-        <Route path='/' element={<ConstructorPage />} />
-        <Route path='/feed' element={<Feed />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/forgot-password' element={<ForgotPassword />} />
-        <Route path='/reset-password' element={<ResetPassword />} />
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/profile/orders' element={<ProfileOrders />} />
-        <Route path='*' element={<NotFound404 />} />
-      </Routes>
-    </BrowserRouter>
-  </div>
-);
+const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchIngredients());
+  }, [dispatch]);
+
+  return (
+    <div className={styles.app}>
+      <BrowserRouter>
+        <AppHeader />
+        <Routes>
+          <Route path='/' element={<ConstructorPage />} />
+          <Route path='/feed' element={<Feed />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/forgot-password' element={<ForgotPassword />} />
+          <Route path='/reset-password' element={<ResetPassword />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/profile/orders' element={<ProfileOrders />} />
+          <Route path='*' element={<NotFound404 />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+};
 
 export default App;
