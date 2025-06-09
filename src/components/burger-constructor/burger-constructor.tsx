@@ -1,19 +1,14 @@
 import { FC, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from '../../services/store';
 import { TConstructorIngredient, TIngredient } from '@utils-types';
 import { BurgerConstructorUI } from '@ui';
+import { constructorState } from '../../services/slices/constructorSlice';
 
 export const BurgerConstructor: FC = () => {
   const navigate = useNavigate();
-
-  const constructorItems: {
-    bun: TIngredient | null;
-    ingredients: TConstructorIngredient[];
-  } = {
-    bun: null,
-    ingredients: []
-  };
-
+  const items = useSelector(constructorState);
+  const constructorItems = items;
   const orderRequest = false;
   const orderModalData = null;
 
