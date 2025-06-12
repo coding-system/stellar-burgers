@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useDispatch } from '../../services/store';
 import { fetchIngredients } from '../../services/slices/ingredientsSlice';
+import { getUser } from '../../services/slices/authSlice';
 import {
   ConstructorPage,
   Feed,
@@ -14,6 +15,7 @@ import {
   NotFound404
 } from '@pages';
 import { AppHeader } from '@components';
+import { ProtectedRoute } from '../protected-route/protected-route';
 import '../../index.css';
 import styles from './app.module.css';
 
@@ -22,6 +24,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(fetchIngredients());
+    dispatch(getUser());
   }, [dispatch]);
 
   return (
@@ -35,8 +38,22 @@ const App = () => {
           <Route path='/register' element={<Register />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
           <Route path='/reset-password' element={<ResetPassword />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/profile/orders' element={<ProfileOrders />} />
+          <Route
+            path='/profile'
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/profile/orders'
+            element={
+              <ProtectedRoute>
+                <ProfileOrders />
+              </ProtectedRoute>
+            }
+          />
           <Route path='*' element={<NotFound404 />} />
         </Routes>
       </BrowserRouter>
