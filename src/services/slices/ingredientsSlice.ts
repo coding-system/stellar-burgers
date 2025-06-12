@@ -43,4 +43,13 @@ const ingredientsSlice = createSlice({
   }
 });
 
+export const selectIngredients = (state: { ingredients: IngredientsState }) =>
+  state.ingredients.items;
+export const selectIngredientsLoading = (state: {
+  ingredients: IngredientsState;
+}) => state.ingredients.isLoading;
+export const selectIngredientsError = (state: {
+  ingredients: IngredientsState;
+}) => state.ingredients.error;
+
 export default ingredientsSlice.reducer;
