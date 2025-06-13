@@ -22,7 +22,7 @@ export const BurgerConstructor: FC = () => {
       return;
     }
 
-   //  console.log(`Оформляем заказ`);
+    //  console.log(`Оформляем заказ`);
     const ingredients = [
       constructorItems.bun._id,
       ...constructorItems.ingredients.map((item) => item._id),
