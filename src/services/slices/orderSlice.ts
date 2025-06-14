@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { orderBurgerApi } from '../../utils/burger-api';
 import { TOrder } from '@utils-types';
+import { RootState } from '../store';
 
 interface OrderState {
   orderRequest: boolean;
@@ -48,4 +49,15 @@ const orderSlice = createSlice({
 });
 
 export const { closeOrderModal } = orderSlice.actions;
+
+export const selectOrderByNumber = (state: RootState, orderNumber: number) => {
+  const feedOrder = state.feed.orders.find(
+    (order) => order.number === orderNumber
+  );
+  const userOrder = state.userOrders.orders.find(
+    (order) => order.number === orderNumber
+  );
+  return feedOrder || userOrder;
+};
+
 export const orderReducer = orderSlice.reducer;

@@ -14,7 +14,7 @@ import {
   ProfileOrders,
   NotFound404
 } from '@pages';
-import { AppHeader } from '@components';
+import { AppHeader, IngredientDetails, OrderInfo } from '@components';
 import { ProtectedRoute } from '../protected-route/protected-route';
 import '../../index.css';
 import styles from './app.module.css';
@@ -55,6 +55,45 @@ const App = () => {
             }
           />
           <Route path='*' element={<NotFound404 />} />
+          <Route
+            path='/ingredients/:id'
+            element={
+              <div className={styles.detailPageWrap}>
+                <p
+                  className={`${styles.detailHeader} text text_type_main-large`}
+                >
+                  Детали ингридиента
+                </p>
+                <IngredientDetails />
+              </div>
+            }
+          />
+          <Route
+            path='/feed/:number'
+            element={
+              <div className={styles.detailPageWrap}>
+                <p
+                  className={`${styles.detailHeader} text text_type_main-large`}
+                >
+                  Детали заказа
+                </p>
+                <OrderInfo />
+              </div>
+            }
+          />
+          <Route
+            path='/profile/orders/:number'
+            element={
+              <div className={styles.detailPageWrap}>
+                <p
+                  className={`${styles.detailHeader} text text_type_main-large`}
+                >
+                  Детали заказа
+                </p>
+                <OrderInfo />
+              </div>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>
