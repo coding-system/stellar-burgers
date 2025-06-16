@@ -1,16 +1,15 @@
 import { FC, SyntheticEvent, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { LoginUI } from '@ui-pages';
 import { login } from '../../services/slices/authSlice';
-import { RootState, AppDispatch } from '../../services/store';
+import { RootState, useDispatch, useSelector } from '../../services/store';
 
 export const Login: FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch();
   const { loading, error, isAuthenticated } = useSelector(
     (state: RootState) => state.auth
   );
