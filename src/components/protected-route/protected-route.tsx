@@ -4,13 +4,22 @@ import { useSelector } from '../../services/store';
 
 interface ProtectedRouteProps {
   children: ReactNode;
+  onlyUnAuth?: boolean;
 }
 
-export const ProtectedRoute: FC<ProtectedRouteProps> = ({ children }) => {
+export const ProtectedRoute: FC<ProtectedRouteProps> = ({
+  children,
+  onlyUnAuth = false
+}) => {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const location = useLocation();
 
-  if (!isAuthenticated) {
+  if (onlyUnAuth && isAuthenticated) {
+    const { from } = location.state || { from: { pathname: '/' } };
+    return <Navigate to={from} />;
+  }
+
+  if (!onlyUnAuth && !isAuthenticated) {
     return <Navigate to='/login' state={{ from: location }} replace />;
   }
 
