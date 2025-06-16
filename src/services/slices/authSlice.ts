@@ -14,6 +14,7 @@ import { deleteCookie, setCookie } from '../../utils/cookie';
 interface AuthState {
   user: TUser | null;
   isAuthenticated: boolean;
+  isAuthChecked: boolean;
   loading: boolean;
   error: string | null;
 }
@@ -21,6 +22,7 @@ interface AuthState {
 const initialState: AuthState = {
   user: null,
   isAuthenticated: false,
+  isAuthChecked: false,
   loading: false,
   error: null
 };
@@ -81,10 +83,12 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.loading = false;
         state.isAuthenticated = true;
+        state.isAuthChecked = true;
         state.user = action.payload;
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
+        state.isAuthChecked = true;
         state.error = action.error.message || 'Ошибка авторизации';
       })
       .addCase(register.pending, (state) => {
@@ -94,15 +98,18 @@ const authSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.loading = false;
         state.isAuthenticated = true;
+        state.isAuthChecked = true;
         state.user = action.payload;
       })
       .addCase(register.rejected, (state, action) => {
         state.loading = false;
+        state.isAuthChecked = true;
         state.error = action.error.message || 'Ошибка регистрации';
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
         state.isAuthenticated = false;
+        state.isAuthChecked = true;
       })
       .addCase(getUser.pending, (state) => {
         state.loading = true;
@@ -111,10 +118,12 @@ const authSlice = createSlice({
       .addCase(getUser.fulfilled, (state, action) => {
         state.loading = false;
         state.isAuthenticated = true;
+        state.isAuthChecked = true;
         state.user = action.payload;
       })
       .addCase(getUser.rejected, (state, action) => {
         state.loading = false;
+        state.isAuthChecked = true;
         state.error =
           action.error.message || 'Ошибка получения данных пользователя';
       })
