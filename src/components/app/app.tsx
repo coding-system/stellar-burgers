@@ -154,11 +154,9 @@ const App = () => {
           <Route
             path='/profile/orders/:number'
             element={
-              <ProtectedRoute>
-                <Modal title='Детали Заказа' onClose={navigateBack}>
-                  <OrderInfo />
-                </Modal>
-              </ProtectedRoute>
+              <Modal title='Детали Заказа' onClose={navigateBack}>
+                <OrderInfo />
+              </Modal>
             }
           />
         </Routes>
