@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState, useDispatch } from '../../services/store';
+// import { useSelector } from 'react-redux';
+import { RootState, useDispatch, useSelector } from '../../services/store';
 import { ProfileOrdersUI } from '@ui-pages';
 import {
   fetchUserOrders,

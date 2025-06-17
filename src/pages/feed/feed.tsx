@@ -1,5 +1,6 @@
 import { FC, useEffect, useCallback } from 'react';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
+import { useSelector } from '../../services/store';
 import { Preloader } from '@ui';
 import { FeedUI } from '@ui-pages';
 import {
