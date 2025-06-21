@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from '../../services/store';
-import { fetchIngredients } from '../../services/slices/ingredientsSlice';
-import { getUser } from '../../services/slices/authSlice';
+import { fetchIngredients } from '../../services/slices/ingredients/ingredientsSlice';
+import { getUser } from '../../services/slices/auth/authSlice';
 import {
   ConstructorPage,
   Feed,
@@ -18,7 +18,7 @@ import { AppHeader, IngredientDetails, OrderInfo, Modal } from '@components';
 import { ProtectedRoute } from '../protected-route/protected-route';
 
 import { useLocation, useNavigate } from 'react-router-dom';
-import { fetchFeeds } from '../../services/slices/feedSlice';
+import { fetchFeeds } from '../../services/slices/feed/feedSlice';
 
 import '../../index.css';
 import styles from './app.module.css';

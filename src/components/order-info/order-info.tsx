@@ -3,9 +3,9 @@ import { Preloader } from '../ui/preloader';
 import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient } from '@utils-types';
 import { useSelector } from '../../services/store';
-import { selectIngredients } from '../../services/slices/ingredientsSlice';
+import { selectIngredients } from '../../services/slices/ingredients/ingredientsSlice';
 import { useParams } from 'react-router-dom';
-import { selectOrderByNumber } from '../../services/slices/orderSlice';
+import { selectOrderByNumber } from '../../services/slices/order/orderSlice';
 
 export const OrderInfo: FC = () => {
   const params = useParams();

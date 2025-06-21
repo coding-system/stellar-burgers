@@ -2,7 +2,7 @@ import { FC, SyntheticEvent, useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 // import { useDispatch, useSelector } from 'react-redux';
 import { RegisterUI } from '@ui-pages';
-import { register } from '../../services/slices/authSlice';
+import { register } from '../../services/slices/auth/authSlice';
 // import { RootState, AppDispatch } from '../../services/store';
 import { RootState, useDispatch, useSelector } from '../../services/store';
 
