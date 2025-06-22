@@ -3,7 +3,7 @@ import ingredientsReducer from './slices/ingredients/ingredientsSlice';
 import constructorReducer from './slices/constructor/constructorSlice';
 import feedReducer from './slices/feed/feedSlice';
 import authReducer from './slices/auth/authSlice';
-import { orderReducer } from './slices/order/orderSlice';
+import orderReducer from './slices/order/orderSlice';
 import userOrdersReducer from './slices/userOrders/userOrdersSlice';
 
 const rootReducer = combineReducers({

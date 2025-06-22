@@ -60,4 +60,4 @@ export const selectOrderByNumber = (state: RootState, orderNumber: number) => {
   return feedOrder || userOrder;
 };
 
-export const orderReducer = orderSlice.reducer;
+export default orderSlice.reducer;
