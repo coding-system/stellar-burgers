@@ -25,4 +25,19 @@ describe('Страница конструктора', () => {
       });
     });
   });
+
+  it('открывает и закрывает модальное окно ингредиента', () => {
+    // Открыть модалку
+    cy.get('[data-cy=ingredient-card]').first().click();
+    cy.get('[data-cy=modal]').should('be.visible');
+    // Закрыть на кнопку
+    cy.get('[data-cy=modal-close-button]').click();
+    cy.get('[data-cy=modal]').should('not.exist');
+    // Открыть модалку
+    cy.get('[data-cy=ingredient-card]').eq(1).click();
+    cy.get('[data-cy=modal]').should('be.visible');
+    // Кликнуть на оверлей
+    cy.get('[data-cy=modal-overlay]').click('left', { force: true });
+    cy.get('[data-cy=modal]').should('not.exist');
+  });
 });
