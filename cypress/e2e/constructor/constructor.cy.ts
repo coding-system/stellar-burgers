@@ -40,4 +40,29 @@ describe('Страница конструктора', () => {
     cy.get('[data-cy=modal-overlay]').click('left', { force: true });
     cy.get('[data-cy=modal]').should('not.exist');
   });
+
+  it('отображает в модалке данные именно того ингредиента, по которому кликнули', () => {
+    cy.fixture('ingredients.json').then((data) => {
+      // Проверяем для первого ингредиента
+      const firstIngredient = data.data[0];
+      cy.get('[data-cy=ingredient-card]')
+        .contains(firstIngredient.name)
+        .click();
+      cy.get('[data-cy=modal]')
+        .should('be.visible')
+        .and('contain.text', firstIngredient.name);
+      cy.get('[data-cy=modal-close-button]').click();
+      cy.get('[data-cy=modal]').should('not.exist');
+      // Проверяем для второго ингредиента
+      const secondIngredient = data.data[1];
+      cy.get('[data-cy=ingredient-card]')
+        .contains(secondIngredient.name)
+        .click();
+      cy.get('[data-cy=modal]')
+        .should('be.visible')
+        .and('contain.text', secondIngredient.name);
+      cy.get('[data-cy=modal-close-button]').click();
+      cy.get('[data-cy=modal]').should('not.exist');
+    });
+  });
 });
