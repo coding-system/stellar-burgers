@@ -65,4 +65,40 @@ describe('Страница конструктора', () => {
       cy.get('[data-cy=modal]').should('not.exist');
     });
   });
+
+  it('добавляет булку и начинку в конструктор', () => {
+    cy.fixture('ingredients.json').then((data) => {
+      // Находим первый ингредиент с type bun)
+      const bun = data.data.find(
+        (ingredient: { type: string }) => ingredient.type === 'bun'
+      );
+      // Находим первый ингредиент с type main)
+      const main = data.data.find(
+        (ingredient: { type: string }) => ingredient.type === 'main'
+      );
+
+      // Добавляем булку
+      cy.get('[data-cy=ingredient-card]')
+        .contains(bun.name)
+        .closest('[data-cy=ingredient-card]')
+        .find('button')
+        .click();
+      cy.get('[data-cy=constructor-top-bun]').should('contain.text', bun.name);
+      cy.get('[data-cy=constructor-bottom-bun]').should(
+        'contain.text',
+        bun.name
+      );
+
+      // Добавляем начинку
+      cy.get('[data-cy=ingredient-card]')
+        .contains(main.name)
+        .closest('[data-cy=ingredient-card]')
+        .find('button')
+        .click();
+      cy.get('[data-cy=constructor-ingredients]').should(
+        'contain.text',
+        main.name
+      );
+    });
+  });
 });
