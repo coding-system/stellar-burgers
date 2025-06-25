@@ -160,7 +160,10 @@ describe('Страница конструктора', () => {
     // Проверяем, что конструктор очищен (ингредиенты удалены)
     cy.get('[data-cy=constructor-top-bun]').should('not.exist');
     cy.get('[data-cy=constructor-bottom-bun]').should('not.exist');
-    cy.get('[data-cy=constructor-ingredients]').should('not.exist');
+    cy.get('[data-cy=constructor-ingredients]').should(
+      'contain.text',
+      'Выберите начинку'
+    );
 
     // Очищаем токены после теста
     cy.window().then((win) => {
