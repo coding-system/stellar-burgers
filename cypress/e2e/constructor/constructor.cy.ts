@@ -102,6 +102,12 @@ describe('Страница конструктора', () => {
   });
 
   it('Оформляет заказ и показывает номер заказа', () => {
+    // Установить фейковые токены перед тестом
+    cy.window().then((win) => {
+      win.localStorage.setItem('refreshToken', 'test-refreshToken');
+    });
+    cy.setCookie('accessToken', 'test-accessToken');
+
     cy.intercept('POST', '/api/orders', { fixture: 'order.json' }).as(
       'postOrder'
     );
@@ -146,5 +152,12 @@ describe('Страница конструктора', () => {
         orderNumber
       );
     });
+
+    // Очищаем токены после теста
+    cy.window().then((win) => {
+      win.localStorage.clear();
+    });
+    cy.clearCookie('accessToken');
+    cy.clearCookie('refreshToken');
   });
 });
