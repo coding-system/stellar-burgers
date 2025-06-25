@@ -135,12 +135,12 @@ describe('Страница конструктора', () => {
     // Нажимаем кнопку оформления заказа
     cy.get('[data-cy=make-order-button]').click();
 
-    // Ждем post запрос
+    // Ждем POST-запрос
     cy.wait('@postOrder');
 
     // Ждем появления модалки с номером заказа
     cy.fixture('order.json').then((orderData) => {
-      const orderNumber = orderData.order.number;
+      const orderNumber = orderData.order.number; // Правильная структура: order.number
       cy.get('[data-cy=order-number]', { timeout: 10000 }).should(
         'contain',
         orderNumber
