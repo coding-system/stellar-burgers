@@ -76,6 +76,13 @@ describe('Страница конструктора', () => {
         (ingredient: { type: string }) => ingredient.type === 'main'
       );
 
+      cy.get('[data-cy=constructor-top-bun]').should('not.exist');
+      cy.get('[data-cy=constructor-bottom-bun]').should('not.exist');
+      cy.get('[data-cy=constructor-ingredients]').should(
+        'contain.text',
+        'Выберите начинку'
+      );
+
       // Добавляем булку
       cy.get('[data-cy=ingredient-card]')
         .contains(bun.name)
@@ -122,6 +129,14 @@ describe('Страница конструктора', () => {
       );
       const main = data.data.find(
         (ingredient: { type: string }) => ingredient.type === 'main'
+      );
+
+      // Проверяем, что конструктор изначально пустой
+      cy.get('[data-cy=constructor-top-bun]').should('not.exist');
+      cy.get('[data-cy=constructor-bottom-bun]').should('not.exist');
+      cy.get('[data-cy=constructor-ingredients]').should(
+        'contain.text',
+        'Выберите начинку'
       );
 
       // Добавляем булку
