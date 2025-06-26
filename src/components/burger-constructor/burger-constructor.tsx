@@ -38,6 +38,8 @@ export const BurgerConstructor: FC = () => {
     try {
       const result = await dispatch(createOrder(ingredients)).unwrap();
       // console.log(`Заказ оформлен, номер заказа: ${result.number}`);
+      // Очищаем конструктор после успешного создания заказа
+      dispatch(resetConstructor());
     } catch (error) {
       // console.error(`Ошибка при оформлении заказа:, ${error}`);
     }
@@ -45,7 +47,6 @@ export const BurgerConstructor: FC = () => {
 
   const handleCloseOrderModal = () => {
     dispatch(closeOrderModal());
-    dispatch(resetConstructor());
   };
 
   const price = useMemo(
