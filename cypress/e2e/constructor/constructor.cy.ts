@@ -153,10 +153,6 @@ describe('Страница конструктора', () => {
       );
     });
 
-    // Закрываем модалку заказа
-    cy.get('[data-cy=modal-close-button]').click();
-    cy.get('[data-cy=modal]').should('not.exist');
-
     // Проверяем, что конструктор очищен (ингредиенты удалены)
     cy.get('[data-cy=constructor-top-bun]').should('not.exist');
     cy.get('[data-cy=constructor-bottom-bun]').should('not.exist');
@@ -164,6 +160,10 @@ describe('Страница конструктора', () => {
       'contain.text',
       'Выберите начинку'
     );
+
+    // Закрываем модалку заказа
+    cy.get('[data-cy=modal-close-button]').click();
+    cy.get('[data-cy=modal]').should('not.exist');
 
     // Очищаем токены после теста
     cy.window().then((win) => {
