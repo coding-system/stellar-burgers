@@ -6,7 +6,7 @@ import { FeedInfoUI } from '../ui/feed-info';
 import {
   selectFeedOrders,
   selectFeedState
-} from '../../services/slices/feedSlice';
+} from '../../services/slices/feed/feedSlice';
 
 const getOrders = (orders: TOrder[], status: string): number[] =>
   orders

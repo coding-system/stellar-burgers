@@ -5,7 +5,7 @@ import { ProfileOrdersUI } from '@ui-pages';
 import {
   fetchUserOrders,
   selectUserOrders
-} from '../../services/slices/userOrdersSlice';
+} from '../../services/slices/userOrders/userOrdersSlice';
 
 export const ProfileOrders: FC = () => {
   const dispatch = useDispatch();

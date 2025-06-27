@@ -3,8 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from '../../services/store';
 import { TConstructorIngredient } from '@utils-types';
 import { BurgerConstructorUI } from '@ui';
-import { constructorState } from '../../services/slices/constructorSlice';
-import { createOrder, closeOrderModal } from '../../services/slices/orderSlice';
+import {
+  constructorState,
+  resetConstructor
+} from '../../services/slices/constructor/constructorSlice';
+import {
+  createOrder,
+  closeOrderModal
+} from '../../services/slices/order/orderSlice';
 
 export const BurgerConstructor: FC = () => {
   const navigate = useNavigate();
@@ -32,6 +38,8 @@ export const BurgerConstructor: FC = () => {
     try {
       const result = await dispatch(createOrder(ingredients)).unwrap();
       // console.log(`Заказ оформлен, номер заказа: ${result.number}`);
+      // Очищаем конструктор после успешного создания заказа
+      dispatch(resetConstructor());
     } catch (error) {
       // console.error(`Ошибка при оформлении заказа:, ${error}`);
     }
